@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 
-app.listen(process.env.HTTP_PORT || 80, () => {
+app.listen(process.env.PORT || 80, () => {
     connection.authenticate();
     console.log("App online");
 });
