@@ -5,6 +5,7 @@ const passport = require("passport");
 const app = express();
 const cors = require("cors");
 const connection = require("./connection");
+const userRouter = require("./routes/user");
 // const { registerStrategy, loginStrategy, verifyStrategy } = require("./middleware/auth");
 
 
@@ -12,6 +13,8 @@ const connection = require("./connection");
 app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
+
+app.use("/user", userRouter);
 
 app.listen(process.env.PORT || 80, () => {
     connection.authenticate();
