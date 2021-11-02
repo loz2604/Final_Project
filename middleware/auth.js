@@ -56,7 +56,7 @@ const verifyStrategy = new JWTStrategy({
 
 
 const registerStrategy = new LocalStrategy({ usernameField: "email", passwordField: "password" }, register);
-const loginStrategy = new LocalStrategy({ usernameField: "email", passwordField: "password" }, register);
+const loginStrategy = new LocalStrategy({ usernameField: "email", passwordField: "password" }, login);
 
 module.exports = {
     verifyStrategy,
