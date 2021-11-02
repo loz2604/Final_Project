@@ -1,11 +1,10 @@
-const { DataTypes, STRING } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const connection = require("../connection");
 
 module.exports = connection.define("User",
     {
         name: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         email: {
             type: DataTypes.STRING,

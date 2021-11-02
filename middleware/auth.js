@@ -5,9 +5,9 @@ const JWTStrategy = require("passport-jwt").Strategy;
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/user");
 
-const register = async (name, email, password, next) => {
+const register = async (email, password, next) => {
     try {
-        if (!name || !email || !password) {
+        if (!email || !password) {
             throw new Error("Insufficient User Info Provided");
         }
 
@@ -15,10 +15,10 @@ const register = async (name, email, password, next) => {
         const passwordHash = await bcrypt.hash(password, salt);
 
         try {
-            const user = await User.create({ name, email, passwordHash });
+            const user = await User.create({ email, passwordHash });
             next(null, user);
         } catch (error) {
-            next(error);
+            next(error, {});
         }
     } catch (error) {
         next(error)
@@ -56,6 +56,7 @@ const verifyStrategy = new JWTStrategy({
 
 
 const registerStrategy = new LocalStrategy({ usernameField: "email", passwordField: "password" }, register);
+
 const loginStrategy = new LocalStrategy({ usernameField: "email", passwordField: "password" }, login);
 
 module.exports = {
