@@ -11,6 +11,7 @@ const { registerStrategy, loginStrategy, verifyStrategy } = require("./middlewar
 const User = require("./models/user");
 
 const userRouter = require("./routes/user");
+const registerError = require("./middleware/errors");
 
 app.use(express.json());
 app.use(cors());
@@ -21,7 +22,8 @@ passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
 passport.use(verifyStrategy);
 
-app.use("/user", userRouter)
+app.use("/user", userRouter);
+app.use(registerError);
 
 app.listen(process.env.PORT, async () => {
     connection.authenticate();

@@ -15,12 +15,16 @@ const register = async (email, password, next) => {
         const passwordHash = await bcrypt.hash(password, salt);
 
         try {
+            console.log("1")
             const user = await User.create({ email, passwordHash });
+            console.log("2")
             next(null, user);
         } catch (error) {
-            next(error, {});
+            console.log("3")
+            next(error, {})
         }
     } catch (error) {
+        console.log("8")
         next(error)
     }
 };
@@ -43,6 +47,7 @@ const verify = (token, next) => {
     try {
         next(null, token.user);
     } catch (error) {
+        console.log("7")
         next(error);
     }
 };

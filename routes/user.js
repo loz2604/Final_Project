@@ -5,13 +5,9 @@ const User = require("../models/user");
 
 const session = { session: false };
 
-const profile = (req, res, next) => {
-    res.status(200).json({ msg: "Profile", user: req.user, token: req.query.secret_token });
-};
+const profile = (req, res, next) => res.status(200).json({ msg: "Profile", user: req.user, token: req.query.secret_token });
 
-const register = (req, res, next) => {
-    req.user.email ? res.status(201).json({ msg: "Registered", user: [req.user] }) : res.status(401).json({ msg: "User Already Exists" });
-};
+const register = (req, res, next) => res.status(201).json({ msg: "Registered", user: [req.user] });
 
 const login = async (req, res, next) => {
     passport.authenticate("login", async (err, user, info) => {
