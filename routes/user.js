@@ -2,6 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/user");
+const { addName } = require("../utils/user");
 
 const session = { session: false };
 
@@ -34,9 +35,11 @@ const login = async (req, res, next) => {
     })(req, res, next);
 };
 
-
 router.get("/", passport.authenticate("jwt", session), profile);
 router.post("/register", passport.authenticate("register", session), register);
+
+router.put("/register", async (req, res) => res.status(200).json({ msg: "Added a name", data: await addName(req.body.email, req.body.name) }));
+
 router.post("/login", login);
 
 module.exports = router;
