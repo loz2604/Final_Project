@@ -30,5 +30,3 @@ app.listen(process.env.PORT, async () => {
     await User.sync({ alter: true });
     console.log("App online");
 });
-
-
