@@ -21,17 +21,20 @@ passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
 passport.use(verifyStrategy);
 
+app.use("/test", (req, res) => {
+  res.send("Hello World!")
+})
 app.use("/user", userRouter);
 app.use(registerError);
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    console.log("got here")
-    next();
-  });
+  res.header('Access-Control-Allow-Origin', '*');
+  console.log("got here")
+  next();
+});
 
 app.listen(process.env.PORT, async () => {
-    connection.authenticate();
-    await User.sync({ alter: true });
-    console.log("App online");
+  connection.authenticate();
+  await User.sync({ alter: true });
+  console.log("App online");
 });
