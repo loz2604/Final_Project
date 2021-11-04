@@ -33,18 +33,12 @@ app.use("/test", (req, res) => {
 app.use("/user", userRouter);
 app.use(registerError);
 
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  console.log("got here")
-  next();
-});
-
 app.listen(process.env.PORT, async () => {
   connection.authenticate();
   await User.sync({ alter: true });
   console.log("App online");
 });
+
 
 
 
