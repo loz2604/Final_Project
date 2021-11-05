@@ -40,4 +40,11 @@ app.listen(process.env.PORT, async () => {
   await Orders.sync({ alter: true });
   await OrderInfo.sync({ alter: true });
   console.log("App online");
+
 });
+
+
+
+
+
+
