@@ -19,3 +19,4 @@ module.exports = connection.define("User",
         indexes: [{ unique: true, fields: ["email"] }]
     }
 );
+
