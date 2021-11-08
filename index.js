@@ -12,10 +12,11 @@ const User = require("./models/user");
 const { Orders, OrderInfo } = require("./models/order");
 const { Products } = require("./models/products");
 const userRouter = require("./routes/user");
+const registerError = require("./middleware/errors");
 const orderRouter = require("./routes/order");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/data");
-const registerError = require("./middleware/errors");
+
 
 app.use(express.json());
 app.use(cors());
@@ -34,7 +35,7 @@ app.use("/test", (req, res) => {
   res.send("Hello World!")
 });
 app.use("/user", userRouter);
-app.use("/orders", orderRouter);
+app.use("/order", orderRouter);
 app.use("/admin", adminRouter);
 app.use("/product", productRouter);
 app.use(registerError);
