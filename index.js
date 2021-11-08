@@ -11,12 +11,13 @@ const { registerStrategy, loginStrategy, verifyStrategy } = require("./middlewar
 const User = require("./models/user");
 const { Orders, OrderInfo } = require("./models/order");
 const { Products } = require("./models/products");
+const { Basket } = require("./models/savedbasket");
 const userRouter = require("./routes/user");
 const registerError = require("./middleware/errors");
 const orderRouter = require("./routes/order");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/data");
-
+const basketRouter = require("./routes/basket");
 
 app.use(express.json());
 app.use(cors());
@@ -38,6 +39,7 @@ app.use("/user", userRouter);
 app.use("/order", orderRouter);
 app.use("/admin", adminRouter);
 app.use("/product", productRouter);
+app.use("/basket", basketRouter);
 app.use(registerError);
 
 app.listen(process.env.PORT, async () => {
@@ -46,6 +48,7 @@ app.listen(process.env.PORT, async () => {
   await Products.sync({ alter: true });
   await Orders.sync({ alter: true });
   await OrderInfo.sync({ alter: true });
+  await Basket.sync({ alter: true });
   console.log("App online");
 });
 
