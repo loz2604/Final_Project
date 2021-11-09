@@ -1,3 +1,4 @@
+const { Products } = require("../models/products");
 const { Basket } = require("../models/savedbasket");
 const User = require("../models/user");
 
@@ -12,13 +13,16 @@ const saveBasket = async (body) => {
 const getBasket = async (body) => {
     const user = await User.findOne({where: {email: body.email}});
     const savedItems = await Basket.findAll({raw: true, where: {UserId: user.id}});
-    const productIds = savedItems.map((item) => {return{"productId": item.ProductId, "quantity": item.quantity}})
-    // let productIds = [];
-    // for (let i = 0; i < savedItems.length; i++) {
-    //     productIds.push({"productId": savedItems[i].ProductId, "quantity": savedItems[i].quantity})
-    // };
+    const productIds = savedItems.map((item) => item.ProductId);
+    const products = await Products.findAll({raw: true, where: {Id: productIds}});
+
+    const quantities = savedItems.map((item) => item.quantity);
+
+    for (let i = 0; i < products.length; i++) {
+        const data = {product: products[i], quantity: quantities[i]};
+        console.log(data);
+    }
     await Basket.destroy({where: {UserId: user.id}});
-    return productIds;
 };
 
 module.exports = { saveBasket, getBasket }
