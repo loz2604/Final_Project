@@ -18,6 +18,7 @@ const orderRouter = require("./routes/order");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/data");
 const basketRouter = require("./routes/basket");
+const purchaseRouter = require("./routes/purchase");
 
 app.use(express.json());
 app.use(cors());
@@ -40,6 +41,7 @@ app.use("/order", orderRouter);
 app.use("/admin", adminRouter);
 app.use("/product", productRouter);
 app.use("/basket", basketRouter);
+app.use("/purchase", purchaseRouter);
 app.use(registerError);
 
 app.listen(process.env.PORT, async () => {
