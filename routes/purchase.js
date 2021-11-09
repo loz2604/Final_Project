@@ -1,7 +1,9 @@
+const { addOrder } = require("../utils/order");
+
 const router = require("express").Router();
 
 router.post("/", async (req, res) => {
-    res.status(201).json({msg: ""})
-})
+    res.status(201).json({ msg: "Purchase Made", data: await addOrder(req.body) })
+});
 
-modules.exports = router;
+module.exports = router;

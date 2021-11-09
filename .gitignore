@@ -1,7 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,node,emacs,vim,visualstudiocode,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,node,emacs,vim,visualstudiocode,windows
-
+data.json
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
