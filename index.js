@@ -45,10 +45,10 @@ app.use(registerError);
 app.listen(process.env.PORT, async () => {
   connection.authenticate();
   await User.sync({ alter: true });
+  await Basket.sync({ alter: true });
   await Products.sync({ alter: true });
   await Orders.sync({ alter: true });
   await OrderInfo.sync({ alter: true });
-  await Basket.sync({ alter: true });
   console.log("App online");
 });
 

@@ -15,7 +15,8 @@ const OrderInfo = connection.define("OrderInfo", {
 OrderInfo.belongsTo(Orders, { onDelete: "cascade" });
 Orders.belongsTo(User, { onDelete: "cascade" });
 OrderInfo.belongsTo(Products, { onDelete: "cascade" });
-Basket.belongsTo(Products, { onDelete: "cascade" });
+Basket.belongsTo(Products, {through: "Basketcase"});
 Basket.belongsTo(User, { onDelete: "cascade" });
+Products.belongsToMany(Basket, { through: "Basketcase" });
 
 module.exports = { Orders, OrderInfo }
