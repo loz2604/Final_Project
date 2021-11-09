@@ -13,16 +13,16 @@ const saveBasket = async (body) => {
 const getBasket = async (body) => {
     const user = await User.findOne({where: {email: body.email}});
     const savedItems = await Basket.findAll({raw: true, where: {UserId: user.id}});
-    const productIds = savedItems.map((item) => item.ProductId);
-    const products = await Products.findAll({raw: true, where: {Id: productIds}});
-
+    const products = await Products.findAll({raw: true, where: {Id: savedItems.map((item) => item.ProductId)}});
     const quantities = savedItems.map((item) => item.quantity);
 
+    const data = [];
+
     for (let i = 0; i < products.length; i++) {
-        const data = {product: products[i], quantity: quantities[i]};
-        console.log(data);
-    }
+        data.push({product: products[i], quantity: quantities[i]});
+    };
     await Basket.destroy({where: {UserId: user.id}});
+    return data;
 };
 
 module.exports = { saveBasket, getBasket }
