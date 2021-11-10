@@ -34,7 +34,7 @@ const userOrder = async (email) => {
     let basket = [];
 
     for (let i = 0; i < productIdsQtys.length; i++) {
-        let temp = await Products.findOne({raw: true, where: {Id: productIdsQtys[i].ProductId}});
+        let temp = await Products.findOne({raw: true, where: {id: productIdsQtys[i].ProductId}});
         basket[i] = {...temp, "qty": productIdsQtys[i].quantity}
     };
     return basket;
