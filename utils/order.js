@@ -10,7 +10,6 @@ const addOrder = async (order) => {
     await Orders.create({ UserId: user.id });
     const theOrder = await Orders.findOne({ where: { UserId: user.id }, order: [["createdAt", "DESC"]] });
     const items = order.order;
-    console.log(items);
     for (let item of items) {
         await OrderInfo.create({ OrderId: theOrder.id, ProductId: item.productId, quantity: item.quantity });
     }
