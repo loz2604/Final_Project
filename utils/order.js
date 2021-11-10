@@ -27,13 +27,9 @@ const userOrder = async (email) => {
     const products = await OrderInfo.findAll({ raw: true, where: { orderId: orderIds } });
     
     let productIdsQtys = [];
-    let productIds = [];
-    let quantities = [];
 
     for (let i = 0; i < products.length; i++) {
         productIdsQtys.push({"ProductId": products[i].ProductId, "quantity": products[i].quantity});
-        productIds.push(products[i].ProductId);
-        quantities.push(products[i].quantity);
     };
 
     let basket = [];
