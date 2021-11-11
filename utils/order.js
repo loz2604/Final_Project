@@ -23,7 +23,7 @@ const userOrder = async (email) => {
         orderIds.push(orders[i].id);
     };
 
-    const products = await OrderInfo.findAll({ raw: true, where: { orderid: orderIds } });
+    const products = await OrderInfo.findAll({ raw: true, where: { orderId: orderIds } });
     // here is the issue doestn recognise OrderId, need to change name
     let productIdsQtys = [];
 
